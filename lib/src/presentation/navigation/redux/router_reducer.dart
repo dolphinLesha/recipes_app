@@ -9,6 +9,9 @@ class NavigationReducer {
   ]);
 
   static AppState _onRouteChanged(AppState state, RouteChanged action) {
-    return state.copyWith.navigationState(currentRoute: action.route, navigationIcons: action.navigationIcons);
+    return state.copyWith.navigationState(
+      currentRoute: action.route,
+      navigationIcons: action.navigationIcons,
+    );
   }
 }

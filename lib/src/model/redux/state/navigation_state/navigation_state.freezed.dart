@@ -105,7 +105,7 @@ class __$$_NavigationStateCopyWithImpl<$Res>
 
 class _$_NavigationState implements _NavigationState {
   const _$_NavigationState(
-      {@JsonKey() this.currentRoute = const RouteHome(),
+      {@JsonKey() this.currentRoute = const RouteLoadAppSplash(),
       final List<IconData>? navigationIcons})
       : _navigationIcons = navigationIcons;
 

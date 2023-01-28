@@ -6,7 +6,7 @@ import '../navigation_state/navigation_state.dart';
 part 'app_state.freezed.dart';
 // part 'app_state.g.dart';
 
-enum Status { initial, loading, failure, success }
+// enum Status { initial, loading, failure, success }
 
 @freezed
 class AppState with _$AppState {

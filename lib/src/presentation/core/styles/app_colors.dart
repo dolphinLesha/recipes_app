@@ -12,8 +12,8 @@ class AdditionalColors {
 }
 
 class MainColors {
-  static const Color darkBlue = Color(0xff15adad);
-  static const Color semiDarkBlue = Color(0xff18dada);
-  static const Color blue = Color(0xff1ff9f9);
-  static const Color lightBlue = Color(0xff97ffff);
+  static const Color darkGreen = Color(0xff18624d);
+  static const Color semiDarkGreen = Color(0xff258f70);
+  static const Color green = Color(0xff30ba8f);
+  static const Color lightGreen = Color(0xff39dca9);
 }

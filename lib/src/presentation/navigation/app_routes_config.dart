@@ -1,4 +1,5 @@
 import 'package:recipes_app/src/presentation/modules/home/navigation/home_routes.dart';
+import 'package:recipes_app/src/presentation/modules/splash/navigation/splash_routes.dart';
 import 'package:recipes_app/src/presentation/navigation/unknown_route.dart';
 
 import 'core/navigation_route.dart';
@@ -12,14 +13,15 @@ class RouteUnknown extends RoutePath {
 List<NavigationRoute> defaultRoutes = [
   NavigationRoute(
     routePath: const RouteUnknown(),
-    location: '/',
+    location: '/unknown/',
     screen: const UnknownScreen(),
   ),
 ];
 
 List<NavigationRoute> appRouteList = [
-  ...defaultRoutes,
+  // ...defaultRoutes,
   ...homeRoutes,
+  ...splashRoutes,
 ];
 
 Map<Type, NavigationRoute> appRoutesMap =

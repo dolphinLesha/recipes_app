@@ -6,10 +6,11 @@ class UnknownScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: const [
-        Center(
-          child: Text('Unknown'),
-        ),
+        Center(child: Text('Unknown')),
       ],
     );
   }

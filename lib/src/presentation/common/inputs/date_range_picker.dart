@@ -954,7 +954,7 @@ class _CellInkWell extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      hoverColor: MainColors.blue.withOpacity(0.1),
+      hoverColor: MainColors.green.withOpacity(0.1),
       borderRadius: BorderRadius.circular(4),
       child: child,
     );

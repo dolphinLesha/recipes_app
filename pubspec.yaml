@@ -23,6 +23,10 @@ dependencies:
   syncfusion_flutter_datepicker: ^20.1.61
   cupertino_icons: ^1.0.2
   dart_date: ^1.1.1
+  sqflite: ^2.0.3+1
+  path: ^1.8.1
+  redux_thunk: ^0.4.0
+  flutter_platform_widgets: ^2.2.6
 
 dev_dependencies:
   flutter_test:

@@ -3,6 +3,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:recipes_app/di.dart';
 import 'package:recipes_app/src/presentation/core/styles/app_colors.dart';
 import 'package:recipes_app/src/presentation/navigation/app_navigation_categories/app_nav_categories.dart';
+import 'package:recipes_app/src/presentation/navigation/redux/router_actions.dart';
 
 class AppNavigationBar extends StatelessWidget {
   final Widget child;
@@ -39,16 +40,19 @@ class AppNavigationBar extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      for (var category in AppNavigationCategories.values)
+                      for (var category in AppNavigationCategory.values)
                         PlatformIconButton(
                           icon: Icon(
                             category.icon(context),
                             color: MainColors.semiDarkGreen,
                             size: 32,
                           ),
+                          onPressed: () {
+                            DI.store.dispatch(RouteChanged(category: category));
+                          },
                         ),
                     ],
                   ),

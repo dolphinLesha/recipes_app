@@ -16,9 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AppState {
-  @JsonKey()
   NavigationState get navigationState => throw _privateConstructorUsedError;
-  @JsonKey()
   ThemeState get themeState => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,9 +28,7 @@ mixin _$AppState {
 abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res>;
-  $Res call(
-      {@JsonKey() NavigationState navigationState,
-      @JsonKey() ThemeState themeState});
+  $Res call({NavigationState navigationState, ThemeState themeState});
 
   $NavigationStateCopyWith<$Res> get navigationState;
   $ThemeStateCopyWith<$Res> get themeState;
@@ -84,9 +80,7 @@ abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
           _$_AppState value, $Res Function(_$_AppState) then) =
       __$$_AppStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {@JsonKey() NavigationState navigationState,
-      @JsonKey() ThemeState themeState});
+  $Res call({NavigationState navigationState, ThemeState themeState});
 
   @override
   $NavigationStateCopyWith<$Res> get navigationState;
@@ -126,11 +120,9 @@ class __$$_AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 
 class _$_AppState implements _AppState {
   const _$_AppState(
-      {@JsonKey() this.navigationState = const NavigationState(),
-      @JsonKey() this.themeState = const ThemeState()});
+      {required this.navigationState, this.themeState = const ThemeState()});
 
   @override
-  @JsonKey()
   final NavigationState navigationState;
   @override
   @JsonKey()
@@ -166,14 +158,12 @@ class _$_AppState implements _AppState {
 
 abstract class _AppState implements AppState {
   const factory _AppState(
-      {@JsonKey() final NavigationState navigationState,
-      @JsonKey() final ThemeState themeState}) = _$_AppState;
+      {required final NavigationState navigationState,
+      final ThemeState themeState}) = _$_AppState;
 
   @override
-  @JsonKey()
   NavigationState get navigationState;
   @override
-  @JsonKey()
   ThemeState get themeState;
   @override
   @JsonKey(ignore: true)

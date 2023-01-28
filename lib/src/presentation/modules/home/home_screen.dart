@@ -55,26 +55,24 @@ class HomeScreen extends StatelessWidget {
           decoration: BoxDecoration(
             color: DI.store.state.themeState.currentTheme?.canvasColor,
           ),
-          child: AppNavigationBar(
-            child: BlocProvider<HomeScreenBloc>(
-              create: (context) =>
-              HomeScreenBloc()..add(const HomeScreenInitLoad()),
-              child: Column(
-                children: [
-                  Flexible(
-                    flex: 2,
-                    child: Container(),
-                  ),
-                  const Flexible(
-                    flex: 5,
-                    child: _RecipeCategories(),
-                  ),
-                  const Flexible(
-                    flex: 3,
-                    child: SizedBox(),
-                  ),
-                ],
-              ),
+          child: BlocProvider<HomeScreenBloc>(
+            create: (context) =>
+            HomeScreenBloc()..add(const HomeScreenInitLoad()),
+            child: Column(
+              children: [
+                Flexible(
+                  flex: 2,
+                  child: Container(),
+                ),
+                const Flexible(
+                  flex: 5,
+                  child: _RecipeCategories(),
+                ),
+                const Flexible(
+                  flex: 3,
+                  child: SizedBox(),
+                ),
+              ],
             ),
           ),
         );
@@ -134,11 +132,11 @@ class _MainForm extends StatelessWidget {
         PlatformIconButton(
           onPressed: () {},
           icon: Icon(
-            Icons.add,
+            PlatformIcons(context).add,
           ),
         ),
         for (var item in categories)
-          Text(
+          PlatformText(
             item.title ?? 'f',
           ),
       ],

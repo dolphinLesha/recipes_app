@@ -4,6 +4,8 @@ import 'package:recipes_app/src/model/redux/state/navigation_state/navigation_st
 import 'package:recipes_app/src/presentation/core/styles/app_colors.dart';
 import 'package:recipes_app/src/presentation/core/styles/app_typography.dart';
 import 'package:recipes_app/src/presentation/modules/home/home_screen.dart';
+import 'package:recipes_app/src/presentation/modules/navigation_bar/navigation_bar.dart';
+import 'package:recipes_app/src/presentation/navigation/app_navigation_categories/app_nav_categories.dart';
 import 'package:recipes_app/src/presentation/navigation/unknown_route.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -18,31 +20,39 @@ class RouterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, NavigationState>(
-        converter: (store) => store.state.navigationState,
-        distinct: true,
-        builder: (context, state) {
-          Widget body;
-          NavigationRoute? navigationRoute =
-              appRoutesMap[state.currentRoute.runtimeType];
+      converter: (store) => store.state.navigationState,
+      distinct: true,
+      builder: (context, state) {
+        Widget body;
+        NavigationRoute? navigationRoute =
+            appRoutesMap[state.currentRoute.runtimeType];
 
-          if (navigationRoute != null) {
-            body = navigationRoute.screen;
-          } else {
-            body = const HomeScreen();
-          }
+        if (navigationRoute != null) {
+          body = navigationRoute.screen;
+        } else {
+          body = const HomeScreen();
+        }
+        if (state.navigationCategory != null) {
           return PlatformScaffold(
             appBar: PlatformAppBar(
               // backgroundColor: MainColors.green,
               title: PlatformText(
-                'RecipesApp',
+                state.navigationCategory!.appBarTitle,
                 style: AT.h3,
               ),
               // leading: Icon(
               //   PlatformIcons(context).personAdd,
               // ),
             ),
-            body: body,
+            body: AppNavigationBar(
+              child: body,
+            ),
           );
-        });
+        }
+        return PlatformScaffold(
+          body: body,
+        );
+      },
+    );
   }
 }

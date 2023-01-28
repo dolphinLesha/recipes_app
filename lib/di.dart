@@ -4,6 +4,8 @@ import 'package:recipes_app/src/data/sqlite/sqlite_config.dart';
 import 'package:recipes_app/src/model/models/recipes_category/recipes_category.dart';
 import 'package:recipes_app/src/model/redux/home_screen/reducer.dart';
 import 'package:recipes_app/src/model/redux/state/app_state/app_state.dart';
+import 'package:recipes_app/src/model/redux/state/navigation_state/navigation_state.dart';
+import 'package:recipes_app/src/presentation/navigation/app_navigation_categories/app_nav_categories.dart';
 import 'package:recipes_app/src/presentation/navigation/redux/router_reducer.dart';
 import 'package:recipes_app/src/presentation/redux/theme/theme_reducer.dart';
 import 'package:redux/redux.dart';
@@ -19,7 +21,12 @@ class DI {
   static Future<void> init() async {
     GetIt.I.registerSingleton<Store<AppState>>(Store<AppState>(
       DI._appReducer,
-      initialState: const AppState(),
+      initialState: AppState(
+          navigationState: NavigationState(
+              navigationHistory: Map.fromIterables(
+                  AppNavigationCategory.values,
+                  List.generate(AppNavigationCategory.values.length,
+                      (index) => const [])))),
     ));
 
     GetIt.I.registerSingleton<Future<Database>>(openDatabase(
@@ -42,9 +49,8 @@ class DI {
   static Future<Database> get database => GetIt.I<Future<Database>>();
 }
 
-void initializeDB(Database db){
-  db.execute(
-      'DROP TABLE IF EXISTS ${SqliteConfig.recipeCategoryTableName};');
+void initializeDB(Database db) {
+  db.execute('DROP TABLE IF EXISTS ${SqliteConfig.recipeCategoryTableName};');
   db.execute('DROP TABLE IF EXISTS ${SqliteConfig.userInfoTableName};');
   db.execute(
     SqliteConfig.recipeCategoryTableCreate,

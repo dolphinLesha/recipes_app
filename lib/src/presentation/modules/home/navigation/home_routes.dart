@@ -1,3 +1,5 @@
+import 'package:recipes_app/src/presentation/navigation/app_navigation_categories/app_nav_categories.dart';
+
 import '../../../navigation/core/navigation_route.dart';
 import '../../../navigation/core/route_path.dart';
 import '../home_screen.dart';
@@ -11,5 +13,6 @@ List<NavigationRoute> homeRoutes = [
     routePath: const RouteHome(),
     location: '/home/',
     screen: const HomeScreen(),
+    category: AppNavigationCategory.home,
   ),
 ];

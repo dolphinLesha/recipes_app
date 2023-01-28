@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:recipes_app/src/presentation/navigation/app_route_delegate.dart';
 import 'package:recipes_app/src/presentation/navigation/app_route_information_parser.dart';
@@ -19,8 +20,8 @@ class App extends StatelessWidget {
     print(store.state.themeState.currentTheme);
     return StoreProvider(
       store: store,
-      child: MaterialApp.router(
-        theme: store.state.themeState.currentTheme ?? ThemeData(),
+      child: PlatformApp.router(
+        // theme: store.state.themeState.currentTheme ?? ThemeData(),
         routeInformationParser: AppRouteInformationParser(),
         routerDelegate: AppRouterDelegate(store),
         backButtonDispatcher: RootBackButtonDispatcher(),

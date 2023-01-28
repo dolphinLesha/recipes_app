@@ -11,8 +11,8 @@ part 'app_state.freezed.dart';
 @freezed
 class AppState with _$AppState {
   const factory AppState({
-    @JsonKey() @Default(NavigationState()) NavigationState navigationState,
-    @JsonKey() @Default(ThemeState()) ThemeState themeState,
+    required NavigationState navigationState,
+    @Default(ThemeState()) ThemeState themeState,
   }) = _AppState;
 
 // factory AppState.fromJson(Map<String, dynamic> json) =>

@@ -2,6 +2,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+
 // import 'package:flutter_redux/flutter_redux.dart';
 import 'package:recipes_app/src/model/redux/app/app_state/app_state.dart';
 import 'package:recipes_app/src/model/redux/theme/theme_state/theme_state.dart';
@@ -9,6 +10,8 @@ import 'package:recipes_app/src/model/redux/user/actions.dart';
 import 'package:recipes_app/src/presentation/core/styles/app_theme.dart';
 import 'package:recipes_app/src/presentation/navigation/app_route_delegate.dart';
 import 'package:recipes_app/src/presentation/navigation/app_route_information_parser.dart';
+import 'package:recipes_app/src/presentation/navigation/app_routes_config.dart';
+import 'package:recipes_app/src/presentation/navigation/core/navigation_route.dart';
 // import 'package:redux/redux.dart';
 
 
@@ -24,24 +27,57 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
       store: store,
-      child: StoreConnector<AppState, ThemeState>(
-          converter: (store) => store.state.themeState,
+      child: StoreConnector<AppState, ViewModel>(
+          vm: () => Factory(),
           distinct: true,
-        builder: (context, state) {
-          return PlatformApp.router(
-            // theme: store.state.themeState.currentTheme ?? ThemeData(),
-            routeInformationParser: AppRouteInformationParser(),
-            routerDelegate: AppRouterDelegate(store),
-            backButtonDispatcher: RootBackButtonDispatcher(),
-            debugShowCheckedModeBanner: true,
-            routeInformationProvider: PlatformRouteInformationProvider(
-                initialRouteInformation: const RouteInformation(
-                    location: '/welcome/')),
-            material: (context, platform) => MaterialAppRouterData(theme: AppTheme.materialTheme),
-            cupertino: (context, platform) => CupertinoAppRouterData(theme: state.currentThemeMode ? AppTheme.cupertinoTheme : AppTheme.cupertinoDarkTheme),
-          );
-        }
+          builder: (context, state) {
+            return PlatformApp.router(
+              // theme: store.state.themeState.currentTheme ?? ThemeData(),
+              routeInformationParser: AppRouteInformationParser(),
+              routerDelegate: AppRouterDelegate(store),
+              backButtonDispatcher: RootBackButtonDispatcher(),
+              debugShowCheckedModeBanner: true,
+              routeInformationProvider: PlatformRouteInformationProvider(
+                  initialRouteInformation: RouteInformation(
+                      location: state.location)),
+              material: (context, platform) =>
+                  MaterialAppRouterData(theme: AppTheme.materialTheme),
+              cupertino: (context, platform) =>
+                  CupertinoAppRouterData(theme: state.theme
+                      ? AppTheme.cupertinoTheme
+                      : AppTheme.cupertinoDarkTheme),
+            );
+          }
       ),
     );
   }
+}
+
+class Factory extends VmFactory<AppState, ViewModel> {
+  @override
+  ViewModel fromStore() {
+    String location = '/';
+    NavigationRoute? navigationRoute =
+    appRoutesMap[state.navigationState.currentRoute.runtimeType];
+    print(navigationRoute?.location);
+    if (navigationRoute != null) {
+      location = navigationRoute.location!;
+    }
+    return ViewModel(
+      theme: state.themeState.currentThemeMode,
+      location: location,
+    );
+  }
+
+}
+
+/// The view-model holds the part of the Store state the dumb-widget needs.
+class ViewModel extends Vm {
+  final bool theme;
+  final String location;
+
+  ViewModel({
+    required this.theme,
+    required this.location,
+  }) : super();
 }

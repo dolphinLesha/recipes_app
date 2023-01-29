@@ -1,3 +1,4 @@
+import 'package:recipes_app/src/model/redux/app/app_state/app_state.dart';
 import 'package:recipes_app/src/presentation/modules/home/navigation/home_routes.dart';
 import 'package:recipes_app/src/presentation/navigation/app_navigation_categories/app_nav_categories.dart';
 import 'package:recipes_app/src/presentation/navigation/app_routes_config.dart';
@@ -6,7 +7,6 @@ import 'package:recipes_app/src/presentation/navigation/core/route_path.dart';
 import 'package:recipes_app/src/presentation/navigation/redux/router_actions.dart';
 import 'package:redux/redux.dart';
 
-import '../../../model/redux/state/app_state/app_state.dart';
 
 class NavigationReducer {
   static final reducer = combineReducers<AppState>([

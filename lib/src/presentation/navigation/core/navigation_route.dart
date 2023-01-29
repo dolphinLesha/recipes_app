@@ -35,4 +35,9 @@ class NavigationRoute {
           )
         : routePath;
   }
+
+  @override
+  String toString() {
+    return 'NavigationRoute{routePath: $routePath, routeValidator: $routeValidator, location: $location, category: $category, screen: $screen}';
+  }
 }

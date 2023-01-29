@@ -17,7 +17,7 @@ class LoadAppSplashScreen extends StatefulWidget {
 class _LoadAppSplashScreenState extends State<LoadAppSplashScreen> {
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 1)).then((value) => DI.store.dispatch(RouteChanged(route: const RouteHome())));
+    // Future.delayed(const Duration(seconds: 1)).then((value) => DI.store.dispatch(RouteChanged(route: const RouteHome())));
     return BackgroundScreen(
       child: Column(
         mainAxisSize: MainAxisSize.max,

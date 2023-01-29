@@ -8,7 +8,7 @@ part 'theme_state.freezed.dart';
 @freezed
 class ThemeState with _$ThemeState {
   const factory ThemeState({
-    @JsonKey() ThemeData? currentTheme,
+    @JsonKey() @Default(true) bool currentThemeMode,
   }) = _ThemeState;
 
 // factory NavigationState.fromJson(Map<String, dynamic> json) => _$NavigationStateFromJson(json);

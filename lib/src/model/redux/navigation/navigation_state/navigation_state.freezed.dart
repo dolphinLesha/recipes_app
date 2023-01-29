@@ -134,7 +134,7 @@ class __$$_NavigationStateCopyWithImpl<$Res>
 
 class _$_NavigationState implements _NavigationState {
   const _$_NavigationState(
-      {this.currentRoute = const RouteLoadAppSplash(),
+      {this.currentRoute = const RouteWelcome(),
       this.navigationCategory,
       final List<IconData>? navigationIcons,
       required final Map<AppNavigationCategory, List<RoutePath>>

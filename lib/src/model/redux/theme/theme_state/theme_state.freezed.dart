@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ThemeState {
   @JsonKey()
-  ThemeData? get currentTheme => throw _privateConstructorUsedError;
+  bool get currentThemeMode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ThemeStateCopyWith<ThemeState> get copyWith =>
@@ -29,7 +29,7 @@ abstract class $ThemeStateCopyWith<$Res> {
   factory $ThemeStateCopyWith(
           ThemeState value, $Res Function(ThemeState) then) =
       _$ThemeStateCopyWithImpl<$Res>;
-  $Res call({@JsonKey() ThemeData? currentTheme});
+  $Res call({@JsonKey() bool currentThemeMode});
 }
 
 /// @nodoc
@@ -42,13 +42,13 @@ class _$ThemeStateCopyWithImpl<$Res> implements $ThemeStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? currentTheme = freezed,
+    Object? currentThemeMode = freezed,
   }) {
     return _then(_value.copyWith(
-      currentTheme: currentTheme == freezed
-          ? _value.currentTheme
-          : currentTheme // ignore: cast_nullable_to_non_nullable
-              as ThemeData?,
+      currentThemeMode: currentThemeMode == freezed
+          ? _value.currentThemeMode
+          : currentThemeMode // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -60,7 +60,7 @@ abstract class _$$_ThemeStateCopyWith<$Res>
           _$_ThemeState value, $Res Function(_$_ThemeState) then) =
       __$$_ThemeStateCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey() ThemeData? currentTheme});
+  $Res call({@JsonKey() bool currentThemeMode});
 }
 
 /// @nodoc
@@ -75,13 +75,13 @@ class __$$_ThemeStateCopyWithImpl<$Res> extends _$ThemeStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? currentTheme = freezed,
+    Object? currentThemeMode = freezed,
   }) {
     return _then(_$_ThemeState(
-      currentTheme: currentTheme == freezed
-          ? _value.currentTheme
-          : currentTheme // ignore: cast_nullable_to_non_nullable
-              as ThemeData?,
+      currentThemeMode: currentThemeMode == freezed
+          ? _value.currentThemeMode
+          : currentThemeMode // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -89,15 +89,15 @@ class __$$_ThemeStateCopyWithImpl<$Res> extends _$ThemeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ThemeState implements _ThemeState {
-  const _$_ThemeState({@JsonKey() this.currentTheme});
+  const _$_ThemeState({@JsonKey() this.currentThemeMode = true});
 
   @override
   @JsonKey()
-  final ThemeData? currentTheme;
+  final bool currentThemeMode;
 
   @override
   String toString() {
-    return 'ThemeState(currentTheme: $currentTheme)';
+    return 'ThemeState(currentThemeMode: $currentThemeMode)';
   }
 
   @override
@@ -106,12 +106,12 @@ class _$_ThemeState implements _ThemeState {
         (other.runtimeType == runtimeType &&
             other is _$_ThemeState &&
             const DeepCollectionEquality()
-                .equals(other.currentTheme, currentTheme));
+                .equals(other.currentThemeMode, currentThemeMode));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(currentTheme));
+      runtimeType, const DeepCollectionEquality().hash(currentThemeMode));
 
   @JsonKey(ignore: true)
   @override
@@ -120,12 +120,12 @@ class _$_ThemeState implements _ThemeState {
 }
 
 abstract class _ThemeState implements ThemeState {
-  const factory _ThemeState({@JsonKey() final ThemeData? currentTheme}) =
+  const factory _ThemeState({@JsonKey() final bool currentThemeMode}) =
       _$_ThemeState;
 
   @override
   @JsonKey()
-  ThemeData? get currentTheme;
+  bool get currentThemeMode;
   @override
   @JsonKey(ignore: true)
   _$$_ThemeStateCopyWith<_$_ThemeState> get copyWith =>

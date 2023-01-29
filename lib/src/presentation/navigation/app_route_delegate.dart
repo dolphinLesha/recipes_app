@@ -1,9 +1,10 @@
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:recipes_app/src/model/redux/app/app_state/app_state.dart';
 import 'package:recipes_app/src/presentation/navigation/redux/router_actions.dart';
 import 'package:recipes_app/src/presentation/navigation/router_screen.dart';
-import 'package:redux/redux.dart';
+// import 'package:redux/redux.dart';
 
-import '../../model/redux/state/app_state/app_state.dart';
 import 'core/route_path.dart';
 
 class AppRouterDelegate extends RouterDelegate<RoutePath>

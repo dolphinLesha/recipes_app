@@ -9,9 +9,8 @@ import 'package:recipes_app/src/model/bloc/home_screen/bloc.dart';
 import 'package:recipes_app/src/model/bloc/home_screen/state/home_screen_state.dart';
 import 'package:recipes_app/src/model/models/recipes_category/recipes_category.dart';
 import 'package:recipes_app/src/model/bloc/home_screen/actions.dart';
-import 'package:recipes_app/src/model/redux/home_screen/reducer.dart';
-import 'package:recipes_app/src/model/redux/state/app_state/app_state.dart';
 import 'package:recipes_app/src/presentation/common/inputs/date_range_picker.dart';
+import 'package:recipes_app/src/presentation/core/styles/app_colors.dart';
 import 'package:recipes_app/src/presentation/core/styles/app_typography.dart';
 import 'package:recipes_app/src/presentation/modules/navigation_bar/navigation_bar.dart';
 
@@ -23,8 +22,8 @@ class HomeScreen extends StatelessWidget {
     return PlatformWidget(
       material: (_, __) {
         return DecoratedBox(
-          decoration: BoxDecoration(
-            color: DI.store.state.themeState.currentTheme?.canvasColor,
+          decoration: const BoxDecoration(
+            color: AdditionalColors.background,
           ),
           child: AppNavigationBar(
             child: BlocProvider<HomeScreenBloc>(
@@ -52,8 +51,8 @@ class HomeScreen extends StatelessWidget {
       },
       cupertino: (_, __){
         return DecoratedBox(
-          decoration: BoxDecoration(
-            color: DI.store.state.themeState.currentTheme?.canvasColor,
+          decoration: const BoxDecoration(
+            color: AdditionalColors.background,
           ),
           child: BlocProvider<HomeScreenBloc>(
             create: (context) =>

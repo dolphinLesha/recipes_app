@@ -16,4 +16,6 @@ class MainColors {
   static const Color semiDarkGreen = Color(0xff258f70);
   static const Color green = Color(0xff30ba8f);
   static const Color lightGreen = Color(0xff39dca9);
+
+  static const Color darkGreenInactive = Color(0xff4c5b4d);
 }

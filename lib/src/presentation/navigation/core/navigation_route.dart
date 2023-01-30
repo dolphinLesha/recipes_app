@@ -11,6 +11,8 @@ class NavigationRoute {
       required RoutePath defaultUnAuthRoute})? routeValidator;
   final String? location;
   final AppNavigationCategory? category;
+  final String? title;
+  final bool hasReturnButton;
   final Widget screen;
 
   NavigationRoute({
@@ -18,6 +20,8 @@ class NavigationRoute {
     this.routeValidator,
     this.location,
     this.category,
+    this.title,
+    this.hasReturnButton = false,
     required this.screen,
   });
 

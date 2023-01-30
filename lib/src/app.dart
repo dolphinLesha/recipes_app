@@ -1,4 +1,5 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -28,9 +29,11 @@ class App extends StatelessWidget {
     return StoreProvider<AppState>(
       store: store,
       child: StoreConnector<AppState, ViewModel>(
-          vm: () => Factory(),
+          converter: (store) => ViewModel.fromStore(store),
           distinct: true,
           builder: (context, state) {
+            print('state.theme ${state.theme}');
+            print('state.location ${state.location}');
             return PlatformApp.router(
               // theme: store.state.themeState.currentTheme ?? ThemeData(),
               routeInformationParser: AppRouteInformationParser(),
@@ -53,31 +56,51 @@ class App extends StatelessWidget {
   }
 }
 
-class Factory extends VmFactory<AppState, ViewModel> {
-  @override
-  ViewModel fromStore() {
+// class Factory extends VmFactory<AppState, ViewModel> {
+//   @override
+//   ViewModel fromStore() {
+//     String location = '/';
+//     NavigationRoute? navigationRoute =
+//     appRoutesMap[state.navigationState.currentRoute.runtimeType];
+//     print(navigationRoute?.location);
+//     if (navigationRoute != null) {
+//       location = navigationRoute.location!;
+//     }
+//     return ViewModel(
+//       theme: state.themeState.currentThemeMode,
+//       location: location,
+//     );
+//   }
+//
+// }
+
+/// The view-model holds the part of the Store state the dumb-widget needs.
+class ViewModel extends Equatable {
+  final bool theme;
+  final String location;
+
+  const ViewModel({
+    required this.theme,
+    required this.location,
+  }) : super();
+  
+  static ViewModel fromStore(Store store) {
     String location = '/';
     NavigationRoute? navigationRoute =
-    appRoutesMap[state.navigationState.currentRoute.runtimeType];
+    appRoutesMap[store.state.navigationState.currentRoute.runtimeType];
     print(navigationRoute?.location);
     if (navigationRoute != null) {
       location = navigationRoute.location!;
     }
     return ViewModel(
-      theme: state.themeState.currentThemeMode,
+      theme: store.state.themeState.currentThemeMode,
       location: location,
     );
   }
 
-}
-
-/// The view-model holds the part of the Store state the dumb-widget needs.
-class ViewModel extends Vm {
-  final bool theme;
-  final String location;
-
-  ViewModel({
-    required this.theme,
-    required this.location,
-  }) : super();
+  @override
+  List<Object?> get props => [
+    theme,
+    location,
+  ];
 }

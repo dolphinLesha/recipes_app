@@ -8,6 +8,7 @@ class LocalUserInfoRepo implements UserInfoRepository{
   @override
   Future<UserInfo?> getUser() async {
     final db = await DI.database;
+    // await db.delete(SqliteConfig.userInfoTableName);
     final List<Map<String, dynamic>> users = await db.query(SqliteConfig.userInfoTableName);
     print(users);
     if (users.isEmpty){

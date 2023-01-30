@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:recipes_app/src/data/common/classes/pair.dart';
 import 'package:recipes_app/src/presentation/modules/authentication/navigation/auth_routes.dart';
 import 'package:recipes_app/src/presentation/modules/home/navigation/home_routes.dart';
 import 'package:recipes_app/src/presentation/modules/splash/load_app_screen.dart';
@@ -18,7 +19,8 @@ class NavigationState with _$NavigationState {
     @Default(RouteWelcome()) RoutePath currentRoute,
     AppNavigationCategory? navigationCategory,
     List<IconData>? navigationIcons,
-    required Map<AppNavigationCategory, List<RoutePath>> navigationHistory,
+    required Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>> navigationHistory,
+    // RoutePath? previousRoute,
   }) = _NavigationState;
 
 // factory NavigationState.fromJson(Map<String, dynamic> json) => _$NavigationStateFromJson(json);

@@ -1,5 +1,6 @@
 import 'package:recipes_app/src/presentation/modules/authentication/navigation/auth_routes.dart';
 import 'package:recipes_app/src/presentation/modules/home/navigation/home_routes.dart';
+import 'package:recipes_app/src/presentation/modules/settings/navigation/settings_routes.dart';
 import 'package:recipes_app/src/presentation/modules/splash/navigation/splash_routes.dart';
 import 'package:recipes_app/src/presentation/modules/test/navigation/test_routes.dart';
 import 'package:recipes_app/src/presentation/navigation/unknown_route.dart';
@@ -26,6 +27,7 @@ List<NavigationRoute> appRouteList = [
   ...splashRoutes,
   ...testRoutes,
   ...authRoutes,
+  ...settingsRoutes,
 ];
 
 Map<Type, NavigationRoute> appRoutesMap =

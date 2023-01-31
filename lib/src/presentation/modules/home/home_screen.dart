@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:recipes_app/di.dart';
 import 'package:recipes_app/src/data/common/classes/pair.dart';
 import 'package:recipes_app/src/data/common/enums/form_stage.dart';

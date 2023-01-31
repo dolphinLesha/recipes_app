@@ -27,7 +27,6 @@ class LocalRecipesRepository implements RecipesRepository{
     await db.transaction((txn) async {
       int id1 = await txn.rawInsert(
           'INSERT INTO ${SqliteConfig.recipeCategoryTableName}(title, color, color1, color2) VALUES("some name", 1234, 456.789)');
-      print('inserted1: $id1');
     });
 
     return true;

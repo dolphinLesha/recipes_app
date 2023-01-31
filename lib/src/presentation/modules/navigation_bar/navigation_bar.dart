@@ -1,12 +1,12 @@
-import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:recipes_app/di.dart';
-import 'package:recipes_app/src/model/redux/app/app_state/app_state.dart';
-import 'package:recipes_app/src/model/redux/navigation/navigation_state/navigation_state.dart';
+import 'package:recipes_app/src/model/bloc/navigation/actions.dart';
+import 'package:recipes_app/src/model/bloc/navigation/bloc.dart';
+import 'package:recipes_app/src/model/bloc/navigation/state/navigation_state.dart';
 import 'package:recipes_app/src/presentation/core/styles/app_colors.dart';
 import 'package:recipes_app/src/presentation/navigation/app_navigation_categories/app_nav_categories.dart';
-import 'package:recipes_app/src/presentation/navigation/redux/router_actions.dart';
 
 class AppNavigationBar extends StatelessWidget {
   final Widget child;
@@ -18,9 +18,9 @@ class AppNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, NavigationState>(
-        converter: (store) => store.state.navigationState,
-        distinct: true,
+    return BlocBuilder<NavigationBloc, NavigationState>(
+      bloc: DI.navigationBloc,
+      buildWhen: (p, n) => p.navigationCategory!=n.navigationCategory,
         builder: (context, state) {
         return Column(
           children: [
@@ -58,7 +58,7 @@ class AppNavigationBar extends StatelessWidget {
                                 size: 36,
                               ),
                               onPressed: () {
-                                DI.store.dispatch(RouteChanged(category: category));
+                                DI.navigationBloc.add(RouteChanged(category: category));
                               },
                             ),
                         ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:recipes_app/di.dart';
+import 'package:recipes_app/src/model/bloc/navigation/bloc.dart';
 import 'package:recipes_app/src/presentation/core/styles/app_colors.dart';
 import 'package:recipes_app/src/presentation/modules/settings/navigation/settings_routes.dart';
-import 'package:recipes_app/src/presentation/navigation/redux/router_actions.dart';
 
 class SettingsMainPage extends StatelessWidget {
   const SettingsMainPage({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _SettingAppearance extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        DI.store.dispatch(RouteChanged(route: const RouteSettingsAppearance()));
+        DI.navigationBloc.add(RouteChanged(route: const RouteSettingsAppearance()));
       },
       child: DecoratedBox(
         decoration: const BoxDecoration(

@@ -19,7 +19,6 @@ mixin _$NavigationState {
   RoutePath get currentRoute => throw _privateConstructorUsedError;
   AppNavigationCategory? get navigationCategory =>
       throw _privateConstructorUsedError;
-  List<IconData>? get navigationIcons => throw _privateConstructorUsedError;
   Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>>
       get navigationHistory => throw _privateConstructorUsedError;
 
@@ -36,7 +35,6 @@ abstract class $NavigationStateCopyWith<$Res> {
   $Res call(
       {RoutePath currentRoute,
       AppNavigationCategory? navigationCategory,
-      List<IconData>? navigationIcons,
       Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>>
           navigationHistory});
 }
@@ -54,7 +52,6 @@ class _$NavigationStateCopyWithImpl<$Res>
   $Res call({
     Object? currentRoute = freezed,
     Object? navigationCategory = freezed,
-    Object? navigationIcons = freezed,
     Object? navigationHistory = freezed,
   }) {
     return _then(_value.copyWith(
@@ -66,10 +63,6 @@ class _$NavigationStateCopyWithImpl<$Res>
           ? _value.navigationCategory
           : navigationCategory // ignore: cast_nullable_to_non_nullable
               as AppNavigationCategory?,
-      navigationIcons: navigationIcons == freezed
-          ? _value.navigationIcons
-          : navigationIcons // ignore: cast_nullable_to_non_nullable
-              as List<IconData>?,
       navigationHistory: navigationHistory == freezed
           ? _value.navigationHistory
           : navigationHistory // ignore: cast_nullable_to_non_nullable
@@ -88,7 +81,6 @@ abstract class _$$_NavigationStateCopyWith<$Res>
   $Res call(
       {RoutePath currentRoute,
       AppNavigationCategory? navigationCategory,
-      List<IconData>? navigationIcons,
       Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>>
           navigationHistory});
 }
@@ -108,7 +100,6 @@ class __$$_NavigationStateCopyWithImpl<$Res>
   $Res call({
     Object? currentRoute = freezed,
     Object? navigationCategory = freezed,
-    Object? navigationIcons = freezed,
     Object? navigationHistory = freezed,
   }) {
     return _then(_$_NavigationState(
@@ -120,10 +111,6 @@ class __$$_NavigationStateCopyWithImpl<$Res>
           ? _value.navigationCategory
           : navigationCategory // ignore: cast_nullable_to_non_nullable
               as AppNavigationCategory?,
-      navigationIcons: navigationIcons == freezed
-          ? _value._navigationIcons
-          : navigationIcons // ignore: cast_nullable_to_non_nullable
-              as List<IconData>?,
       navigationHistory: navigationHistory == freezed
           ? _value._navigationHistory
           : navigationHistory // ignore: cast_nullable_to_non_nullable
@@ -138,27 +125,16 @@ class _$_NavigationState implements _NavigationState {
   const _$_NavigationState(
       {this.currentRoute = const RouteWelcome(),
       this.navigationCategory,
-      final List<IconData>? navigationIcons,
       required final Map<AppNavigationCategory,
               List<Pair<RoutePath?, RoutePath>>>
           navigationHistory})
-      : _navigationIcons = navigationIcons,
-        _navigationHistory = navigationHistory;
+      : _navigationHistory = navigationHistory;
 
   @override
   @JsonKey()
   final RoutePath currentRoute;
   @override
   final AppNavigationCategory? navigationCategory;
-  final List<IconData>? _navigationIcons;
-  @override
-  List<IconData>? get navigationIcons {
-    final value = _navigationIcons;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
   final Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>>
       _navigationHistory;
   @override
@@ -170,7 +146,7 @@ class _$_NavigationState implements _NavigationState {
 
   @override
   String toString() {
-    return 'NavigationState(currentRoute: $currentRoute, navigationCategory: $navigationCategory, navigationIcons: $navigationIcons, navigationHistory: $navigationHistory)';
+    return 'NavigationState(currentRoute: $currentRoute, navigationCategory: $navigationCategory, navigationHistory: $navigationHistory)';
   }
 
   @override
@@ -183,8 +159,6 @@ class _$_NavigationState implements _NavigationState {
             const DeepCollectionEquality()
                 .equals(other.navigationCategory, navigationCategory) &&
             const DeepCollectionEquality()
-                .equals(other._navigationIcons, _navigationIcons) &&
-            const DeepCollectionEquality()
                 .equals(other._navigationHistory, _navigationHistory));
   }
 
@@ -193,7 +167,6 @@ class _$_NavigationState implements _NavigationState {
       runtimeType,
       const DeepCollectionEquality().hash(currentRoute),
       const DeepCollectionEquality().hash(navigationCategory),
-      const DeepCollectionEquality().hash(_navigationIcons),
       const DeepCollectionEquality().hash(_navigationHistory));
 
   @JsonKey(ignore: true)
@@ -206,7 +179,6 @@ abstract class _NavigationState implements NavigationState {
   const factory _NavigationState(
       {final RoutePath currentRoute,
       final AppNavigationCategory? navigationCategory,
-      final List<IconData>? navigationIcons,
       required final Map<AppNavigationCategory,
               List<Pair<RoutePath?, RoutePath>>>
           navigationHistory}) = _$_NavigationState;
@@ -215,8 +187,6 @@ abstract class _NavigationState implements NavigationState {
   RoutePath get currentRoute;
   @override
   AppNavigationCategory? get navigationCategory;
-  @override
-  List<IconData>? get navigationIcons;
   @override
   Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>>
       get navigationHistory;

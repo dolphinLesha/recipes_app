@@ -9,7 +9,6 @@ import 'package:recipes_app/src/presentation/common/other/app_logo.dart';
 import 'package:recipes_app/src/presentation/common/other/loading_indicator.dart';
 import 'package:recipes_app/src/presentation/core/styles/app_colors.dart';
 import 'package:recipes_app/src/presentation/core/styles/app_typography.dart';
-import 'package:recipes_app/src/presentation/redux/theme/theme_actions.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);

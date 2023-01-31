@@ -1,7 +1,7 @@
-import 'package:async_redux/async_redux.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:recipes_app/src/model/redux/app/app_state/app_state.dart';
-import 'package:recipes_app/src/presentation/navigation/redux/router_actions.dart';
+import 'package:recipes_app/di.dart';
+import 'package:recipes_app/src/model/bloc/navigation/bloc.dart';
 import 'package:recipes_app/src/presentation/navigation/router_screen.dart';
 // import 'package:redux/redux.dart';
 
@@ -9,14 +9,8 @@ import 'core/route_path.dart';
 
 class AppRouterDelegate extends RouterDelegate<RoutePath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<RoutePath> {
-  final Store<AppState> store;
-
-  AppRouterDelegate(this.store) {
-    store.onChange.map((state) => state.navigationState).distinct().forEach(
-      (state) {
-        notifyListeners();
-      },
-    );
+  AppRouterDelegate() {
+    // DI.navigationBloc.stream.distinct().forEach((state) => notifyListeners());
   }
 
   @override
@@ -45,11 +39,12 @@ class AppRouterDelegate extends RouterDelegate<RoutePath>
 
   @override
   RoutePath get currentConfiguration =>
-      store.state.navigationState.currentRoute;
+      DI.navigationBloc.state.currentRoute;
 
   @override
   Future<void> setNewRoutePath(RoutePath configuration) async {
-    store.dispatch(RouteChanged(route: configuration));
-    return;
+    if (DI.navigationBloc.state.currentRoute!=configuration){
+      DI.navigationBloc.add(RouteChanged(route: configuration));
+    }
   }
 }

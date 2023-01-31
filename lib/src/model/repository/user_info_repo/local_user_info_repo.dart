@@ -1,7 +1,6 @@
 import 'package:recipes_app/di.dart';
 import 'package:recipes_app/src/data/sqlite/sqlite_config.dart';
 import 'package:recipes_app/src/model/models/user_info/user_info.dart';
-import 'package:recipes_app/src/model/redux/user/actions.dart';
 import 'package:recipes_app/src/model/repository/user_info_repo/user_info_repo.dart';
 
 class LocalUserInfoRepo implements UserInfoRepository{
@@ -10,7 +9,6 @@ class LocalUserInfoRepo implements UserInfoRepository{
     final db = await DI.database;
     // await db.delete(SqliteConfig.userInfoTableName);
     final List<Map<String, dynamic>> users = await db.query(SqliteConfig.userInfoTableName);
-    print(users);
     if (users.isEmpty){
       return null;
     }

@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipes_app/di.dart';
 import 'package:recipes_app/src/data/common/enums/form_stage.dart';
+import 'package:recipes_app/src/model/bloc/navigation/actions.dart';
+import 'package:recipes_app/src/model/bloc/user/actions.dart';
 import 'package:recipes_app/src/model/bloc/welcome_screen/actions.dart';
 import 'package:recipes_app/src/model/bloc/Welcome_screen/state/welcome_screen_state.dart';
 import 'package:recipes_app/src/model/models/user_info/user_info.dart';
-import 'package:recipes_app/src/model/redux/user/actions.dart';
 import 'package:recipes_app/src/presentation/navigation/app_navigation_categories/app_nav_categories.dart';
-import 'package:recipes_app/src/presentation/navigation/redux/router_actions.dart';
 export 'package:recipes_app/src/model/bloc/Welcome_screen/state/welcome_screen_state.dart';
 
 class WelcomeScreenBloc extends Bloc<WelcomeScreenAction, WelcomeScreenState> {
@@ -26,10 +26,9 @@ class WelcomeScreenBloc extends Bloc<WelcomeScreenAction, WelcomeScreenState> {
     emit(state.copyWith(formStage: FormStage.loading));
     await Future.delayed(const Duration(seconds: 2));
     try {
-      final user = DI.store.state.userState.userInfo;
-      print('user $user');
+      final user = DI.userBloc.state.userInfo;
       if (user!=null){
-        DI.store.dispatch(RouteChanged(category: AppNavigationCategory.home));
+        DI.navigationBloc.add(RouteChanged(category: AppNavigationCategory.home));
       }
       emit(state.copyWith(
         formStage: FormStage.common,
@@ -51,8 +50,8 @@ class WelcomeScreenBloc extends Bloc<WelcomeScreenAction, WelcomeScreenState> {
       lastName: state.lastName,
     );
     try {
-      DI.store.dispatch(UserSaveUser(user));
-      DI.store.dispatch(RouteChanged(category: AppNavigationCategory.home));
+      DI.userBloc.add(UserSave(user));
+      DI.navigationBloc.add(RouteChanged(category: AppNavigationCategory.home));
     } on Exception catch (e) {
       print(e.toString());
       emit(state.copyWith(

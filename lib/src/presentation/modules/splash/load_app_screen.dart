@@ -5,7 +5,6 @@ import 'package:recipes_app/src/presentation/core/styles/app_colors.dart';
 import 'package:recipes_app/src/presentation/core/styles/app_typography.dart';
 import 'package:recipes_app/src/presentation/modules/home/home_screen.dart';
 import 'package:recipes_app/src/presentation/modules/home/navigation/home_routes.dart';
-import 'package:recipes_app/src/presentation/navigation/redux/router_actions.dart';
 
 class LoadAppSplashScreen extends StatefulWidget {
   const LoadAppSplashScreen({Key? key}) : super(key: key);

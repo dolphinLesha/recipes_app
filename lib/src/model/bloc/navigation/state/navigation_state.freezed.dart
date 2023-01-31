@@ -20,7 +20,8 @@ mixin _$NavigationState {
   AppNavigationCategory? get navigationCategory =>
       throw _privateConstructorUsedError;
   Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>>
-      get navigationHistory => throw _privateConstructorUsedError;
+      get bottomNavigationHistory => throw _privateConstructorUsedError;
+  List<Page> get navigationStack => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NavigationStateCopyWith<NavigationState> get copyWith =>
@@ -36,7 +37,8 @@ abstract class $NavigationStateCopyWith<$Res> {
       {RoutePath currentRoute,
       AppNavigationCategory? navigationCategory,
       Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>>
-          navigationHistory});
+          bottomNavigationHistory,
+      List<Page> navigationStack});
 }
 
 /// @nodoc
@@ -52,7 +54,8 @@ class _$NavigationStateCopyWithImpl<$Res>
   $Res call({
     Object? currentRoute = freezed,
     Object? navigationCategory = freezed,
-    Object? navigationHistory = freezed,
+    Object? bottomNavigationHistory = freezed,
+    Object? navigationStack = freezed,
   }) {
     return _then(_value.copyWith(
       currentRoute: currentRoute == freezed
@@ -63,10 +66,14 @@ class _$NavigationStateCopyWithImpl<$Res>
           ? _value.navigationCategory
           : navigationCategory // ignore: cast_nullable_to_non_nullable
               as AppNavigationCategory?,
-      navigationHistory: navigationHistory == freezed
-          ? _value.navigationHistory
-          : navigationHistory // ignore: cast_nullable_to_non_nullable
+      bottomNavigationHistory: bottomNavigationHistory == freezed
+          ? _value.bottomNavigationHistory
+          : bottomNavigationHistory // ignore: cast_nullable_to_non_nullable
               as Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>>,
+      navigationStack: navigationStack == freezed
+          ? _value.navigationStack
+          : navigationStack // ignore: cast_nullable_to_non_nullable
+              as List<Page>,
     ));
   }
 }
@@ -82,7 +89,8 @@ abstract class _$$_NavigationStateCopyWith<$Res>
       {RoutePath currentRoute,
       AppNavigationCategory? navigationCategory,
       Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>>
-          navigationHistory});
+          bottomNavigationHistory,
+      List<Page> navigationStack});
 }
 
 /// @nodoc
@@ -100,7 +108,8 @@ class __$$_NavigationStateCopyWithImpl<$Res>
   $Res call({
     Object? currentRoute = freezed,
     Object? navigationCategory = freezed,
-    Object? navigationHistory = freezed,
+    Object? bottomNavigationHistory = freezed,
+    Object? navigationStack = freezed,
   }) {
     return _then(_$_NavigationState(
       currentRoute: currentRoute == freezed
@@ -111,10 +120,14 @@ class __$$_NavigationStateCopyWithImpl<$Res>
           ? _value.navigationCategory
           : navigationCategory // ignore: cast_nullable_to_non_nullable
               as AppNavigationCategory?,
-      navigationHistory: navigationHistory == freezed
-          ? _value._navigationHistory
-          : navigationHistory // ignore: cast_nullable_to_non_nullable
+      bottomNavigationHistory: bottomNavigationHistory == freezed
+          ? _value.bottomNavigationHistory
+          : bottomNavigationHistory // ignore: cast_nullable_to_non_nullable
               as Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>>,
+      navigationStack: navigationStack == freezed
+          ? _value.navigationStack
+          : navigationStack // ignore: cast_nullable_to_non_nullable
+              as List<Page>,
     ));
   }
 }
@@ -125,28 +138,26 @@ class _$_NavigationState implements _NavigationState {
   const _$_NavigationState(
       {this.currentRoute = const RouteWelcome(),
       this.navigationCategory,
-      required final Map<AppNavigationCategory,
-              List<Pair<RoutePath?, RoutePath>>>
-          navigationHistory})
-      : _navigationHistory = navigationHistory;
+      required this.bottomNavigationHistory,
+      this.navigationStack = const [
+        AppPage(key: ValueKey(RouteWelcome), child: WelcomeScreen())
+      ]});
 
   @override
   @JsonKey()
   final RoutePath currentRoute;
   @override
   final AppNavigationCategory? navigationCategory;
-  final Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>>
-      _navigationHistory;
   @override
-  Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>>
-      get navigationHistory {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_navigationHistory);
-  }
+  final Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>>
+      bottomNavigationHistory;
+  @override
+  @JsonKey()
+  final List<Page> navigationStack;
 
   @override
   String toString() {
-    return 'NavigationState(currentRoute: $currentRoute, navigationCategory: $navigationCategory, navigationHistory: $navigationHistory)';
+    return 'NavigationState(currentRoute: $currentRoute, navigationCategory: $navigationCategory, bottomNavigationHistory: $bottomNavigationHistory, navigationStack: $navigationStack)';
   }
 
   @override
@@ -158,8 +169,10 @@ class _$_NavigationState implements _NavigationState {
                 .equals(other.currentRoute, currentRoute) &&
             const DeepCollectionEquality()
                 .equals(other.navigationCategory, navigationCategory) &&
+            const DeepCollectionEquality().equals(
+                other.bottomNavigationHistory, bottomNavigationHistory) &&
             const DeepCollectionEquality()
-                .equals(other._navigationHistory, _navigationHistory));
+                .equals(other.navigationStack, navigationStack));
   }
 
   @override
@@ -167,7 +180,8 @@ class _$_NavigationState implements _NavigationState {
       runtimeType,
       const DeepCollectionEquality().hash(currentRoute),
       const DeepCollectionEquality().hash(navigationCategory),
-      const DeepCollectionEquality().hash(_navigationHistory));
+      const DeepCollectionEquality().hash(bottomNavigationHistory),
+      const DeepCollectionEquality().hash(navigationStack));
 
   @JsonKey(ignore: true)
   @override
@@ -181,7 +195,8 @@ abstract class _NavigationState implements NavigationState {
       final AppNavigationCategory? navigationCategory,
       required final Map<AppNavigationCategory,
               List<Pair<RoutePath?, RoutePath>>>
-          navigationHistory}) = _$_NavigationState;
+          bottomNavigationHistory,
+      final List<Page> navigationStack}) = _$_NavigationState;
 
   @override
   RoutePath get currentRoute;
@@ -189,7 +204,9 @@ abstract class _NavigationState implements NavigationState {
   AppNavigationCategory? get navigationCategory;
   @override
   Map<AppNavigationCategory, List<Pair<RoutePath?, RoutePath>>>
-      get navigationHistory;
+      get bottomNavigationHistory;
+  @override
+  List<Page> get navigationStack;
   @override
   @JsonKey(ignore: true)
   _$$_NavigationStateCopyWith<_$_NavigationState> get copyWith =>

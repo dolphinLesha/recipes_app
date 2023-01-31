@@ -24,11 +24,12 @@ class WelcomeScreenBloc extends Bloc<WelcomeScreenAction, WelcomeScreenState> {
   void _initLoad(
       WelcomeScreenInitLoad event, Emitter<WelcomeScreenState> emit) async {
     emit(state.copyWith(formStage: FormStage.loading));
+    print('init load -----------------------');
     await Future.delayed(const Duration(seconds: 2));
     try {
       final user = DI.userBloc.state.userInfo;
       if (user!=null){
-        DI.navigationBloc.add(RouteChanged(category: AppNavigationCategory.home));
+        DI.navigationBloc.add(RoutePush(category: AppNavigationCategory.home));
       }
       emit(state.copyWith(
         formStage: FormStage.common,
@@ -51,7 +52,7 @@ class WelcomeScreenBloc extends Bloc<WelcomeScreenAction, WelcomeScreenState> {
     );
     try {
       DI.userBloc.add(UserSave(user));
-      DI.navigationBloc.add(RouteChanged(category: AppNavigationCategory.home));
+      DI.navigationBloc.add(RoutePush(category: AppNavigationCategory.home));
     } on Exception catch (e) {
       print(e.toString());
       emit(state.copyWith(

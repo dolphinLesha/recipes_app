@@ -29,7 +29,7 @@ class _SettingAppearance extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        DI.navigationBloc.add(RouteChanged(route: const RouteSettingsAppearance()));
+        DI.navigationBloc.add(RoutePush(route: const RouteSettingsAppearance()));
       },
       child: DecoratedBox(
         decoration: const BoxDecoration(

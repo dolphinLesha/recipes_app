@@ -58,7 +58,7 @@ class AppNavigationBar extends StatelessWidget {
                                 size: 36,
                               ),
                               onPressed: () {
-                                DI.navigationBloc.add(RouteChanged(category: category));
+                                DI.navigationBloc.add(RoutePush(category: category));
                               },
                             ),
                         ],
@@ -66,7 +66,40 @@ class AppNavigationBar extends StatelessWidget {
                     ),
                   );
                 },
-
+                material: (_, __) {
+                  return Container(
+                    height: 90,
+                    decoration: const BoxDecoration(
+                      color: AdditionalColors.white,
+                      border: Border(
+                        top: BorderSide(
+                          width: 1,
+                          color: AdditionalColors.background,
+                        ),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          for (var category in AppNavigationCategory.values)
+                            PlatformIconButton(
+                              icon: Icon(
+                                category.icon(context),
+                                color: state.navigationCategory == category ? MainColors.darkGreen : AdditionalColors.grey,
+                                size: 36,
+                              ),
+                              onPressed: () {
+                                DI.navigationBloc.add(RoutePush(category: category));
+                              },
+                            ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ],

@@ -5,12 +5,24 @@ abstract class NavigationAction {
   const NavigationAction();
 }
 
-class RouteChanged extends NavigationAction {
+class RoutePush extends NavigationAction {
   final RoutePath? route;
   final AppNavigationCategory? category;
   final RoutePath? previousRoute;
 
-  RouteChanged({
+  RoutePush({
+    this.route,
+    this.category,
+    this.previousRoute,
+  });
+}
+
+class RoutePushReplace extends NavigationAction {
+  final RoutePath? route;
+  final AppNavigationCategory? category;
+  final RoutePath? previousRoute;
+
+  RoutePushReplace({
     this.route,
     this.category,
     this.previousRoute,
